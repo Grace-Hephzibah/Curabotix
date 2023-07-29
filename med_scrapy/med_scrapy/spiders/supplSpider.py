@@ -13,5 +13,5 @@ class SupplspiderSpider(scrapy.Spider):
         for med in meds:
             yield {
                 'name': med.css('a span::text')[1].get(), 
-                'link' : base_url + med.css('a').attrib['href']
+                'url' : base_url + med.css('a').attrib['href']
             }
