@@ -42,22 +42,26 @@ with st.sidebar:
 
 # Main Content - Input
 var = st.text_input("Input Your Query Here", placeholder="Abdominal aortic aneurysm")
-results = hf.cosine_similarity_check(var)
+state, results = hf.cosine_similarity_check(var)
 
 # Main Content - Output
-for ind in results.index:
-    name = results['name'][ind]
-    url = results['url'][ind]
-    type = results['type'][ind]
-    website = results['website'][ind]
-    score = results['Cosine Similarity'][ind]
-    with st.expander(name, expanded=False):
-        col1, col2 = st.columns([1, 3])
-        with col1:
-            st.write("**Website :**", website)
-            st.write("**Score :**", round(score,3))
-        with col2:
-            st.write("**Type :**", type.capitalize())
-            st.write("**URL :**", url)
+if state:
+    for ind in results.index:
+        name = results['name'][ind]
+        url = results['url'][ind]
+        type = results['type'][ind]
+        website = results['website'][ind]
+        score = results['Cosine Similarity'][ind]
+        with st.expander(name, expanded=False):
+            col1, col2 = st.columns([1, 3])
+            with col1:
+                st.write("**Website :**", website)
+                st.write("**Score :**", round(score,3))
+            with col2:
+                st.write("**Type :**", type.capitalize())
+                st.write("**URL :**", url)
+else:
+    with st.expander("No Matches", expanded=False):
+        st.write("There are no results found. This could be because of the input or the options. Please try something else! ")
             
             

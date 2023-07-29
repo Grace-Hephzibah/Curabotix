@@ -47,19 +47,25 @@ class Helper_Functions:
         self.number = number
 
     def cosine_similarity_check(self, text):
-        if text == "":
-            text = 'Abdominal aortic aneurysm'
-        vectorizer = CountVectorizer()
+        try:
+            if text == "":
+                text = 'Abdominal aortic aneurysm'
+            vectorizer = CountVectorizer()
 
-        text_vector = vectorizer.fit_transform([text])
-        column_vector = vectorizer.transform(self.df['name'])
+            text_vector = vectorizer.fit_transform([text])
+            column_vector = vectorizer.transform(self.df['name'])
 
-        cosine_sim = cosine_similarity(text_vector, column_vector)
-        self.df['Cosine Similarity'] = cosine_sim[0]
+            cosine_sim = cosine_similarity(text_vector, column_vector)
+            self.df['Cosine Similarity'] = cosine_sim[0]
 
-        dataframe_sorted = self.df.sort_values(by='Cosine Similarity', ascending=False)
+            dataframe_sorted = self.df.sort_values(by='Cosine Similarity', ascending=False)
 
-        return dataframe_sorted[:self.number]
+            if len(dataframe_sorted) < self.number:
+                return (True, dataframe_sorted)
+            else:
+                return (True, dataframe_sorted[:self.number])
+        except:
+            return (False, None)
 
 
 
