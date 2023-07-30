@@ -2,8 +2,11 @@
 import streamlit as st
 from helper_functions import Helper_Functions 
 
+# Header
+st.set_page_config(page_title='Med Router', page_icon = '💊')
+
 # Intiating the app
-st.header("Med Router ")
+st.header("Med Router 💊")
 hf = Helper_Functions()
 
 # Side Bar
@@ -64,4 +67,7 @@ else:
     with st.expander("No Matches", expanded=False):
         st.write("There are no results found. This could be because of the input or the options. Please try something else! ")
             
-            
+st.write("------------------")
+st.subheader("✨ By Grace Hephzibah✨")
+st.write("https://github.com/Grace-Hephzibah")
+st.write("------------------")

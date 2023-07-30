@@ -20,26 +20,32 @@ class Helper_Functions:
         self.df = pd.read_csv("full_data.csv")
     
     def customize_disease(self, state):
+        self.diseases = state
         if state == False:
             self.df = self.df[self.df['type'] != 'disease']
         
     def customize_drugs(self, state):
+        self.drugs = state
         if state == False:
             self.df = self.df[self.df['type'] != 'drug']
 
     def customize_supplements(self, state):
+        self.supplements = state 
         if state == False:
             self.df = self.df[self.df['type'] != 'supplement']
 
     def customize_symptoms(self, state):
+        self.symptoms = state
         if state == False:
             self.df = self.df[self.df['type'] != 'symptom']
 
     def customize_mayo(self, state):
+        self.mayo = state
         if state == False:
-            self.df = self.df[self.df['website'] != 'Mayo']
+            self.df = self.df[self.df['website'] != 'Mayo Clinic']
         
     def customize_webmd(self, state):
+        self.webmd = state
         if state == False:
             self.df = self.df[self.df['website'] != 'Webmd']
 
